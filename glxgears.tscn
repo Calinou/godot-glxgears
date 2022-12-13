@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://ypmm85bxisw0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qv1ow"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_upq1a"]
+sky_material = SubResource( "ProceduralSkyMaterial_qv1ow" )
+
+[sub_resource type="Environment" id="Environment_53nxw"]
+background_mode = 1
+sky = SubResource( "Sky_upq1a" )
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn6nw"]
+albedo_color = Color(0.756863, 0.0941176, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kmpwr"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kyioa"]
+height = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jv6eg"]
+albedo_color = Color(0, 0.756863, 0.188235, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwvv8"]
+albedo_color = Color(0.188235, 0.188235, 0.94902, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5ciyi"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.25
+
+[node name="GLXGears" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( "Environment_53nxw" )
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+directional_shadow_max_distance = 250.0
+
+[node name="Red" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 1.5)
+material_override = SubResource( "StandardMaterial3D_dn6nw" )
+mesh = SubResource( "CylinderMesh_kmpwr" )
+
+[node name="Green" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource( "CylinderMesh_kyioa" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_jv6eg" )
+
+[node name="Blue" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.4, 1.5)
+material_override = SubResource( "StandardMaterial3D_bwvv8" )
+mesh = SubResource( "CylinderMesh_5ciyi" )
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.654107, -0.333338, 0.678991, 0, 0.897659, 0.44069, -0.756402, -0.288258, 0.587166, 2.55549, 1.91501, 3.17213)
+fov = 50.0
